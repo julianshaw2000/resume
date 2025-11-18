@@ -1,1 +1,1 @@
-# resume
+using hostinger for domain
