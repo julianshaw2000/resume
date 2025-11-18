@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Julian Shaw - Full Stack Developer & Control Systems Engineer Resume">
+    <title>Julian Shaw – Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS-only navigation */
+        .section-content {
+            display: none;
+        }
+        #nav-software:checked ~ header ~ .main-container #section-software,
+        #nav-control:checked ~ header ~ .main-container #section-control,
+        #nav-ai:checked ~ header ~ .main-container #section-ai,
+        #nav-education:checked ~ header ~ .main-container #section-education,
+        #nav-contact:checked ~ header ~ .main-container #section-contact {
+            display: block;
+        }
+        #nav-software:checked ~ header ~ .main-container .sidebar label[for="nav-software"],
+        #nav-control:checked ~ header ~ .main-container .sidebar label[for="nav-control"],
+        #nav-ai:checked ~ header ~ .main-container .sidebar label[for="nav-ai"],
+        #nav-education:checked ~ header ~ .main-container .sidebar label[for="nav-education"],
+        #nav-contact:checked ~ header ~ .main-container .sidebar label[for="nav-contact"] {
+            background-color: rgb(99 102 241);
+            color: white;
+        }
+        #nav-control:checked ~ header ~ .main-container .sidebar label[for="nav-control"] {
+            background-color: rgb(13 148 136);
+        }
+        #nav-ai:checked ~ header ~ .main-container .sidebar label[for="nav-ai"] {
+            background-color: rgb(147 51 234);
+        }
+        #nav-education:checked ~ header ~ .main-container .sidebar label[for="nav-education"] {
+            background-color: rgb(34 197 94);
+        }
+        #nav-contact:checked ~ header ~ .main-container .sidebar label[for="nav-contact"] {
+            background-color: rgb(239 68 68);
+        }
+        /* Desktop: Fixed sidebar */
+        @media (min-width: 769px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 73px; /* Below header */
+                height: calc(100vh - 73px);
+                width: 256px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                z-index: 20;
+                background-color: white;
+                border-right: 1px solid rgb(229 231 235);
+            }
+            .main-container {
+                margin-left: 256px; /* Offset for fixed sidebar */
+            }
+            .header-responsive > div {
+                padding-left: 272px; /* Sidebar width + padding */
+            }
+            /* Profile image positioning on desktop - absolute top left */
+            .header-responsive .profile-image {
+                position: absolute;
+                left: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 31;
+            }
+            .header-responsive > div > div:first-child {
+                padding-left: 80px; /* Space for image (56px) + gap (24px) */
+            }
+            main {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        /* Tablet adjustments */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .sidebar {
+                width: 220px;
+            }
+            .main-container {
+                margin-left: 220px;
+            }
+            .header-responsive > div {
+                padding-left: 236px; /* Sidebar width + padding */
+            }
+            .header-responsive .profile-image {
+                left: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .header-responsive > div > div:first-child {
+                padding-left: 76px;
+            }
+        }
+        /* Mobile sidebar toggle */
+        @media (max-width: 768px) {
+            .header-responsive > div {
+                padding-left: 1rem !important;
+            }
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 73px;
+                height: calc(100vh - 73px);
+                width: 280px;
+                max-width: 85vw;
+                transition: left 0.3s ease;
+                z-index: 50;
+                background-color: white;
+                box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+                padding-top: 20px;
+                overflow-y: auto;
+            }
+            #mobile-toggle:checked ~ header ~ .main-container .sidebar {
+                left: 0;
+            }
+            .mobile-overlay {
+                display: none;
+            }
+            #mobile-toggle:checked ~ .mobile-overlay {
+                display: block;
+            }
+            .main-container {
+                margin-left: 0;
+            }
+        }
+        /* Small mobile adjustments */
+        @media (max-width: 640px) {
+            .sidebar {
+                width: 260px;
+                max-width: 80vw;
+            }
+        }
+        /* Print styles */
+        @media print {
+            .sidebar, .download-section, .mobile-toggle-label {
+                display: none !important;
+            }
+            .section-content {
+                display: block !important;
+            }
+            .main-container {
+                margin-left: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+    <!-- Hidden radio inputs for navigation -->
+    <input type="radio" name="main-nav" id="nav-software" checked class="hidden">
+    <input type="radio" name="main-nav" id="nav-control" class="hidden">
+    <input type="radio" name="main-nav" id="nav-ai" class="hidden">
+    <input type="radio" name="main-nav" id="nav-education" class="hidden">
+    <input type="radio" name="main-nav" id="nav-contact" class="hidden">
+    <input type="checkbox" id="mobile-toggle" class="hidden">
+
+    <!-- Mobile Overlay -->
+    <label for="mobile-toggle" class="mobile-overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></label>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200 fixed top-0 left-0 right-0 z-30 header-responsive relative">
+        <div class="flex items-center justify-between px-4 py-3 sm:py-4">
+            <div class="flex items-center gap-3 sm:gap-4 md:pl-0">
+                <!-- Profile Image - Top Left Corner -->
+                <img src="./me.jpg" alt="Julian Shaw" class="profile-image w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-indigo-200 shadow-sm flex-shrink-0">
+                <!-- Mobile Menu Toggle -->
+                <label for="mobile-toggle" class="mobile-toggle-label md:hidden cursor-pointer text-gray-700 hover:text-gray-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </label>
+                <div>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">Julian Shaw</h1>
+                    <p class="text-xs sm:text-sm md:text-base text-indigo-600">Full Stack Developer & Control Systems Engineer</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container with Sidebar -->
+    <div class="main-container min-h-screen pt-[73px]">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar bg-white border-r border-gray-200 w-64 flex-shrink-0 pt-6 pb-8 px-4">
+            <div class="space-y-2">
+                <label for="nav-software" class="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-colors hover:bg-gray-100 font-medium text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                    <span>Software Development</span>
+                </label>
+                <label for="nav-control" class="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-colors hover:bg-gray-100 font-medium text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                    </svg>
+                    <span>Control Systems</span>
+                </label>
+                <label for="nav-ai" class="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-colors hover:bg-gray-100 font-medium text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                    <span>AI / Machine Learning</span>
+                </label>
+                <label for="nav-education" class="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-colors hover:bg-gray-100 font-medium text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span>Education & Certificates</span>
+                </label>
+                <label for="nav-contact" class="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-colors hover:bg-gray-100 font-medium text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Contact</span>
+                </label>
+            </div>
+
+            <!-- Contact Info (Mobile) -->
+            <div class="mt-8 pt-8 border-t border-gray-200 md:hidden">
+                <div class="space-y-2 text-sm text-gray-600">
+                    <div>📧 julianshaw2000@gmail.com</div>
+                    <div>📱 +44 7448 1547681</div>
+                    <div>📍 Thornton Heath, CR7 7FA</div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="w-full overflow-x-hidden">
+            <!-- Software Development Section -->
+            <div id="section-software" class="section-content">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    <!-- Download Section -->
+                    <div class="download-section mb-8 bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+                        <a href="./files/JulianShaw_SoftwareDeveloper.pdf" download class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors mb-2">
+                            📥 Download Software Developer CV (PDF)
+                        </a>
+                        <div class="text-sm text-gray-600 mt-2">
+                            <a href="./files/JulianShaw_SoftwareDeveloper.pdf" target="_blank" class="text-indigo-600 hover:underline">Open in browser</a>
+                        </div>
+                    </div>
+
+                    <!-- Professional Summary -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-indigo-600">Professional Summary</h2>
+                        <p class="text-base leading-relaxed text-gray-700">
+                            Innovative Full Stack Developer with 20+ years of experience in engineering and IT, specializing in Angular, .NET, and cloud technologies. Proven track record of leading complex projects, developing scalable applications, and implementing efficient CI/CD pipelines. Expertise in Agile methodologies and microservices architecture, with a focus on delivering high-performance solutions that drive operational efficiency and system functionality.
+                        </p>
+                    </section>
+
+                    <!-- Core Competencies -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-indigo-600">Core Competencies</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-indigo-600">•</span>
+                                <span>Full Stack Development</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-indigo-600">•</span>
+                                <span>Cloud Architecture (Azure)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-indigo-600">•</span>
+                                <span>Agile/Scrum Methodologies</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-indigo-600">•</span>
+                                <span>CI/CD Implementation</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-indigo-600">•</span>
+                                <span>Microservices Design</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-indigo-600">•</span>
+                                <span>Technical Leadership</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Technical Skills -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-indigo-600">Technical Skills</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Programming Languages:</h3>
+                                <p class="text-gray-700">C#, TypeScript, JavaScript, HTML, SQL, Python</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Frameworks & Libraries:</h3>
+                                <p class="text-gray-700">Angular (up to v18), ASP.NET Core (up to v8), LINQ, Entity Framework</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Cloud & DevOps:</h3>
+                                <p class="text-gray-700">Azure, GitHub Actions, CI/CD pipelines</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Databases:</h3>
+                                <p class="text-gray-700">PostgreSQL, MS SQL Server, MySQL</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Testing:</h3>
+                                <p class="text-gray-700">MOQ, XUnit, Jasmine</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Design Methodologies:</h3>
+                                <p class="text-gray-700">SCRUM, Agile, TDD, GOF Design Patterns, Microservices</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Operating Systems:</h3>
+                                <p class="text-gray-700">Windows, LINUX, iOS</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Professional Experience -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-indigo-600">Professional Experience</h2>
+                        <div class="space-y-6">
+                            <!-- Carib Condominiums -->
+                            <div class="border-l-4 border-indigo-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Carib Condominiums Gate Management Security System</h3>
+                                    <span class="text-gray-600 font-medium">Aug 2024 - Present</span>
+                                </div>
+                                <p class="text-indigo-600 font-medium mb-2">Developer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Developed a comprehensive gate management system using Angular, Firebase, Python, and Home Assistant automation</li>
+                                    <li>Implemented real-time gate monitoring, security camera integration, and automated visitor logging</li>
+                                    <li>Integrated with Home Assistant for seamless automation of security operations</li>
+                                </ul>
+                            </div>
+
+                            <!-- CTRC Services -->
+                            <div class="border-l-4 border-indigo-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">CTRC Services</h3>
+                                    <span class="text-gray-600 font-medium">May 2024 - Aug 2024</span>
+                                </div>
+                                <p class="text-indigo-600 font-medium mb-2">Full Stack Developer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Spearheaded the development of a comprehensive company portal, enhancing career management and administrative functionalities</li>
+                                    <li>Engineered a robust frontend using Angular 18, creating an intuitive and engaging user interface</li>
+                                    <li>Developed high-performance, scalable backend services using .NET 8</li>
+                                    <li>Orchestrated deployment on Azure, optimizing cloud capabilities for reliable performance</li>
+                                    <li>Implemented CI/CD pipelines with GitHub Actions, boosting development efficiency and enabling rapid deployment</li>
+                                </ul>
+                            </div>
+
+                            <!-- Bookerja.com -->
+                            <div class="border-l-4 border-indigo-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Bookerja.com</h3>
+                                    <span class="text-gray-600 font-medium">July 2023 - July 2024</span>
+                                </div>
+                                <p class="text-indigo-600 font-medium mb-2">Full Stack Developer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Developed and maintained an Angular .NET Azure application for managing Airbnb bookings</li>
+                                    <li>Integrated secure payment processing, booking management, and user-friendly interface to facilitate host and guest interactions</li>
+                                    <li>Optimized cloud infrastructure with Azure for high performance, scalability, and security</li>
+                                    <li>Implemented CI/CD pipelines to automate deployments and testing</li>
+                                </ul>
+                            </div>
+
+                            <!-- Real Digital International -->
+                            <div class="border-l-4 border-indigo-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Real Digital International</h3>
+                                    <span class="text-gray-600 font-medium">Jan 2023 - Jun 2023</span>
+                                </div>
+                                <p class="text-indigo-600 font-medium mb-2">Contract Developer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Led the design and implementation of an innovative stock tracking system, integrating barcode scanning technology for real-time inventory management</li>
+                                    <li>Developed frontend components using Angular and backend services in C#, ensuring seamless integration with existing company databases</li>
+                                    <li>Improved stock accuracy and operational efficiency, resulting in a 25% reduction in inventory discrepancies</li>
+                                </ul>
+                            </div>
+
+                            <!-- Zeolite Technology -->
+                            <div class="border-l-4 border-indigo-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Zeolite Technology</h3>
+                                    <span class="text-gray-600 font-medium">2018 - Aug 2021</span>
+                                </div>
+                                <p class="text-indigo-600 font-medium mb-2">Lead Developer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Architected and developed an AirBnB-style property rental system, facilitating seamless bookings and user interactions</li>
+                                    <li>Created FX trading bots for MT4 and CTrader platforms using C# API, automating the process of buying and selling FX pairs</li>
+                                    <li>Developed a Python-based stock trading bot leveraging Yahoo Finance API and OpenAI API, streamlining stock trading processes</li>
+                                    <li>Wrote and maintained safety systems for Aramco under subcontract with Zeolite.tech, enhancing existing safety applications and ensuring compliance with international safety standards</li>
+                                </ul>
+                            </div>
+
+                            <!-- Saudi Aramco -->
+                            <div class="border-l-4 border-indigo-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Saudi Aramco, Dhahran, Saudi Arabia</h3>
+                                    <span class="text-gray-600 font-medium">2010 - 2018</span>
+                                </div>
+                                <p class="text-indigo-600 font-medium mb-2">Application Engineer, Project Support & Controls Department</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Developed various systems using Angular, Material Design, Flex Framework, WebAPI, Bootstrap, ASP.NET MVC, and SQL Server</li>
+                                    <li>Developed a web-based application for managing the distribution of materials and supplies to projects</li>
+                                    <li>Developed a Project Safety Management System used by 25,000 users globally, developed using ASP.NET MVC, WebAPI, and SQL Server</li>
+                                </ul>
+                            </div>
+
+                            <!-- Saudi Aramco Estimate Engineer -->
+                            <div class="border-l-4 border-indigo-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Saudi Aramco, Dhahran, Saudi Arabia</h3>
+                                    <span class="text-gray-600 font-medium">2008 - 2010</span>
+                                </div>
+                                <p class="text-indigo-600 font-medium mb-2">Estimate Engineer, Project Support & Controls Department</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Developed internal estimating tools and project estimates for Process Control systems and IT communication</li>
+                                </ul>
+                            </div>
+
+                            <!-- Micros Fidelio -->
+                            <div class="border-l-4 border-indigo-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Micros Fidelio, Slough, UK</h3>
+                                    <span class="text-gray-600 font-medium">Dec 2007 - Aug 2008</span>
+                                </div>
+                                <p class="text-indigo-600 font-medium mb-2">Senior/Lead Programmer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Led development teams, created web portals, Windows applications, Web Services, and technical specifications for outsourcing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Education -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-indigo-600">Education</h2>
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-gray-900">MSc Information Technology</h3>
+                                <p class="text-gray-600">University of Liverpool (Jan 2003 - March 2006)</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">BSc Computer Science</h3>
+                                <p class="text-gray-600">University of Massachusetts, USA (Sep 1981 - June 1985)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Certifications -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-indigo-600">Certifications</h2>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Agile Expert Certified (AEC)</li>
+                            <li>Certified SCRUM Master (CSM)</li>
+                            <li>Microservices Architecture Certification (UDEMY)</li>
+                            <li>IBM, Generative AI: Introduction and Applications (2023)</li>
+                            <li>Coursera, Neural Networks and Deep Learning (2024-Ongoing)</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Control Systems Section -->
+            <div id="section-control" class="section-content">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    <!-- Download Section -->
+                    <div class="download-section mb-8 bg-teal-50 border border-teal-200 rounded-lg p-4">
+                        <a href="./files/JulianShaw_ControlSystemsQA.pdf" download class="inline-block bg-teal-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors mb-2">
+                            📥 Download Control Systems / QA CV (PDF)
+                        </a>
+                        <div class="text-sm text-gray-600 mt-2">
+                            <a href="./files/JulianShaw_ControlSystemsQA.pdf" target="_blank" class="text-teal-600 hover:underline">Open in browser</a>
+                        </div>
+                    </div>
+
+                    <!-- Professional Summary -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-teal-600">Professional Summary</h2>
+                        <p class="text-base leading-relaxed text-gray-700">
+                            Resourceful and goal-oriented professional with extensive experience in engineering and quality control. Skilled in technical problem-solving, project management, and quality assurance. Brings a solid background in developing innovative solutions that enhance operational efficiency and improve system functionalities. Expertise in control systems engineering, DCS/PLC systems, QA/ISO standards, and process automation for oil & gas and process plant applications.
+                        </p>
+                    </section>
+
+                    <!-- Core Competencies -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-teal-600">Core Competencies</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-teal-600">•</span>
+                                <span>Control Systems Engineering (DCS, PLC)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-teal-600">•</span>
+                                <span>Quality Assurance & ISO Standards</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-teal-600">•</span>
+                                <span>GAMP Compliance</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-teal-600">•</span>
+                                <span>Project Estimation & Management</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-teal-600">•</span>
+                                <span>Process Control Systems</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-teal-600">•</span>
+                                <span>Lean Sigma Methodologies</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-teal-600">•</span>
+                                <span>Technical Specifications Development</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-teal-600">•</span>
+                                <span>Software Quality Assurance</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Technical Skills -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-teal-600">Technical Skills</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Control Systems:</h3>
+                                <p class="text-gray-700">Honeywell DCS, ABB DCS, PLC Programming, TCP/IP, Process Control</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Quality Standards:</h3>
+                                <p class="text-gray-700">ISO 9001, GAMP (Good Automated Manufacturing Practice), QA Protocols & Audits</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Methodologies:</h3>
+                                <p class="text-gray-700">Lean Sigma, Agile, UML, Software Testing & Validation</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Software Development:</h3>
+                                <p class="text-gray-700">Angular, ASP.NET MVC, C#, SQL Server, Web Services</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Tools:</h3>
+                                <p class="text-gray-700">Firebug, Chrome DevTools, Automated Test Suites</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Professional Experience -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-teal-600">Professional Experience</h2>
+                        <div class="space-y-6">
+                            <!-- Saudi Aramco Control Systems -->
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Saudi Aramco, Dhahran, Saudi Arabia</h3>
+                                    <span class="text-gray-600 font-medium">2008 - 2018</span>
+                                </div>
+                                <p class="text-teal-600 font-medium mb-2">Control Systems Estimate Engineer, Project Support & Controls Department</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Wrote and maintained technical specifications for Process Control systems</li>
+                                    <li>Developed internal estimating tools and project estimates for Process Control systems and IT communication</li>
+                                    <li>Developed web-based applications for material distribution and project safety management using Angular, ASP.NET MVC, and SQL Server</li>
+                                    <li>Developed a Project Safety Management System used by 25,000 users globally</li>
+                                </ul>
+                            </div>
+
+                            <!-- GlaxoSmithKline -->
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">GlaxoSmithKline, Worthing, UK</h3>
+                                    <span class="text-gray-600 font-medium">Jan 2003 - March 2006</span>
+                                </div>
+                                <p class="text-teal-600 font-medium mb-2">Site Automation Engineer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Coordinated implementation of Lean Sigma strategies and maintained DCS facilities</li>
+                                    <li>Ensured all green field DCS projects adhered to QA and GAMP (Good Automated Manufacturing Practice) guidelines to meet regulatory standards and improve project quality</li>
+                                    <li>Developed and implemented quality assurance protocols and audits for new DCS installations, ensuring compliance with both internal and external quality standards</li>
+                                    <li>Completed ISO 9001 training for quality assurance</li>
+                                    <li>Served as support engineer for all automation systems, including DeltaV, Provox systems, and PLCs</li>
+                                    <li>Developed an Effluent Management System controlling the discharge of waste material into the sea, utilizing Delphi, OPC, and RS232 communication</li>
+                                </ul>
+                            </div>
+
+                            <!-- Honeywell Control Systems -->
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Honeywell Control Systems, Bracknell, UK</h3>
+                                    <span class="text-gray-600 font-medium">Sep 2002 - Dec 2002</span>
+                                </div>
+                                <p class="text-teal-600 font-medium mb-2">Project Engineer / CL Programming Engineer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Designed DCS graphics and configured control systems for an oil refinery upgrade project</li>
+                                    <li>Developed and executed test plans and scripts to identify and document software defects</li>
+                                    <li>Developed and implemented quality assurance processes and procedures to ensure software quality</li>
+                                    <li>Developed and enforced software coding standards for engineering teams</li>
+                                </ul>
+                            </div>
+
+                            <!-- ABB/LALCO -->
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">ABB/LALCO, Saudi Arabia</h3>
+                                    <span class="text-gray-600 font-medium">Dec 2000 - Aug 2001</span>
+                                </div>
+                                <p class="text-teal-600 font-medium mb-2">Lead Engineer, DCS Department</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Led a team of Instrument Engineers on a gas upgrade project</li>
+                                    <li>Developed control system specifications</li>
+                                </ul>
+                            </div>
+
+                            <!-- Honeywell Turki Arabia -->
+                            <div class="border-l-4 border-teal-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Honeywell Turki Arabia Ltd, Saudi Arabia</h3>
+                                    <span class="text-gray-600 font-medium">Nov 1998 - Dec 2000</span>
+                                </div>
+                                <p class="text-teal-600 font-medium mb-2">Project Engineer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Implemented control system software and designed TCP/IP service programs</li>
+                                    <li>Lead Engineer for all Aramco DCS projects</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Education -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-teal-600">Education</h2>
+                        <div class="space-y-3">
+                            <div>
+                                <h3 class="font-semibold text-gray-900">MSc Information Technology</h3>
+                                <p class="text-gray-600">University of Liverpool (Jan 2003 - March 2006)</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">BSc Computer Science</h3>
+                                <p class="text-gray-600">University of Massachusetts, USA (Sep 1981 - June 1985)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Certifications -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-teal-600">Certifications</h2>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Agile Expert Certified (AEC)</li>
+                            <li>Certified SCRUM Master (CSM)</li>
+                            <li>ISO 9001: Quality Management System Certification</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+            <!-- AI / Machine Learning Section -->
+            <div id="section-ai" class="section-content">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    <!-- Professional Summary -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-purple-600">AI & Machine Learning Expertise</h2>
+                        <p class="text-base leading-relaxed text-gray-700">
+                            Experienced AI engineer specializing in agentic AI systems, RAG (Retrieval-Augmented Generation) pipelines, and LLM orchestration. Currently advancing expertise in CrewAI, LangGraph, AutoGen, and MCP (Model Context Protocol) for building intelligent automation solutions. Focused on developing freelance AI solutions including legal automation, micro-SaaS applications, and workflow AI systems.
+                        </p>
+                    </section>
+
+                    <!-- Core AI Competencies -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-purple-600">Core AI Competencies</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-600">•</span>
+                                <span>LLM Agent Orchestration</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-600">•</span>
+                                <span>RAG Pipeline Development</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-600">•</span>
+                                <span>Vector Database Integration</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-600">•</span>
+                                <span>Agentic AI Systems Design</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-600">•</span>
+                                <span>Workflow Automation (n8n)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-600">•</span>
+                                <span>MCP Server Development</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-600">•</span>
+                                <span>Legal Tech Automation</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-purple-600">•</span>
+                                <span>Micro-SaaS AI Solutions</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- AI Technical Skills -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-purple-600">AI Technical Skills</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">LLM Frameworks:</h3>
+                                <p class="text-gray-700">OpenAI Agents SDK, LangChain, CrewAI, LangGraph, AutoGen</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Vector Databases:</h3>
+                                <p class="text-gray-700">Pinecone, Qdrant, Chroma, pgvector (PostgreSQL)</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">RAG Tools:</h3>
+                                <p class="text-gray-700">LlamaIndex, Haystack, Custom RAG Pipelines</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Python AI Stack:</h3>
+                                <p class="text-gray-700">Typer CLI, FastAPI, async/await, type hints, uv toolchain</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Integration & Automation:</h3>
+                                <p class="text-gray-700">MCP (Model Context Protocol), n8n workflows, Docker, CI/CD</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800 mb-2">Full-Stack AI:</h3>
+                                <p class="text-gray-700">Angular (frontend), NestJS (API), PostgreSQL (with pgvector), Azure (deployment)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- AI Projects & Experience -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-purple-600">AI Projects & Experience</h2>
+                        <div class="space-y-6">
+                            <!-- Legal-JM Stack -->
+                            <div class="border-l-4 border-purple-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Legal-JM Stack (Current Project)</h3>
+                                    <span class="text-gray-600 font-medium">2024 - Present</span>
+                                </div>
+                                <p class="text-purple-600 font-medium mb-2">Full-Stack AI Solution</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Developing a comprehensive legal automation platform using Angular, NestJS, and Python AI services</li>
+                                    <li>Implementing RAG pipelines with pgvector for document retrieval and intelligent search</li>
+                                    <li>Building agentic AI workflows using CrewAI and LangGraph for document processing and analysis</li>
+                                    <li>Integrating MCP servers for enhanced LLM context and tool access</li>
+                                    <li>Deploying on Azure with Docker containerization and CI/CD pipelines</li>
+                                </ul>
+                            </div>
+
+                            <!-- Zeolite Technology AI Projects -->
+                            <div class="border-l-4 border-purple-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Zeolite Technology</h3>
+                                    <span class="text-gray-600 font-medium">2018 - 2024</span>
+                                </div>
+                                <p class="text-purple-600 font-medium mb-2">AI Trading Systems Developer</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Developed Python-based stock trading bot leveraging Yahoo Finance API and OpenAI API</li>
+                                    <li>Created FX trading bots for MT4 and CTrader platforms using C# API, automating buy/sell decisions</li>
+                                    <li>Implemented automated trading strategies with real-time market data processing</li>
+                                    <li>Integrated machine learning models for predictive trading signals</li>
+                                </ul>
+                            </div>
+
+                            <!-- Carib Condominiums AI Integration -->
+                            <div class="border-l-4 border-purple-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-900">Carib Condominiums Gate Management</h3>
+                                    <span class="text-gray-600 font-medium">Aug 2024 - Present</span>
+                                </div>
+                                <p class="text-purple-600 font-medium mb-2">AI-Powered Security Automation</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>Integrated Home Assistant automation with Python-based AI services</li>
+                                    <li>Implemented intelligent visitor recognition and automated logging systems</li>
+                                    <li>Developed real-time monitoring with AI-powered anomaly detection</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- AI Education & Certifications -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-purple-600">AI Education & Certifications</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-2">Current Training:</h3>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>The Complete Agentic Engineering Course</li>
+                                    <li>Coursera: Neural Networks and Deep Learning (2024-Ongoing)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-2">Certifications:</h3>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700 ml-4">
+                                    <li>IBM: Generative AI: Introduction and Applications (2023)</li>
+                                    <li>Microservices Architecture Certification (UDEMY)</li>
+                                    <li>Agile Expert Certified (AEC)</li>
+                                    <li>Certified SCRUM Master (CSM)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- AI Focus Areas -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-purple-600">Focus Areas</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-purple-900 mb-2">Legal Automation</h3>
+                                <p class="text-sm text-gray-700">Building RAG-powered legal document analysis and workflow automation systems</p>
+                            </div>
+                            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-purple-900 mb-2">Micro-SaaS Solutions</h3>
+                                <p class="text-sm text-gray-700">Developing AI-powered SaaS applications for niche markets</p>
+                            </div>
+                            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-purple-900 mb-2">Workflow AI</h3>
+                                <p class="text-sm text-gray-700">Creating intelligent automation workflows using n8n and agentic AI</p>
+                            </div>
+                            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-purple-900 mb-2">RAG Pipelines</h3>
+                                <p class="text-sm text-gray-700">Designing and implementing retrieval-augmented generation systems for enterprise knowledge bases</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Education, Training & Certificates Section -->
+            <div id="section-education" class="section-content">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    <!-- Education -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-600">Education</h2>
+                        <div class="space-y-6">
+                            <div class="border-l-4 border-green-600 pl-4">
+                                <h3 class="text-xl font-semibold text-gray-900 mb-1">MSc Information Technology</h3>
+                                <p class="text-gray-600 mb-2">University of Liverpool</p>
+                                <p class="text-sm text-gray-500">January 2003 - March 2006</p>
+                                <p class="text-gray-700 mt-2">Advanced studies in information technology, software engineering, and systems design.</p>
+                            </div>
+                            <div class="border-l-4 border-green-600 pl-4">
+                                <h3 class="text-xl font-semibold text-gray-900 mb-1">BSc Computer Science</h3>
+                                <p class="text-gray-600 mb-2">University of Massachusetts, USA</p>
+                                <p class="text-sm text-gray-500">September 1981 - June 1985</p>
+                                <p class="text-gray-700 mt-2">Comprehensive foundation in computer science, programming, algorithms, and data structures.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Professional Certifications -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-600">Professional Certifications</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-green-900 mb-2">Agile Expert Certified (AEC)</h3>
+                                <p class="text-sm text-gray-700">Expert-level certification in Agile methodologies and practices</p>
+                            </div>
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-green-900 mb-2">Certified SCRUM Master (CSM)</h3>
+                                <p class="text-sm text-gray-700">Certified Scrum Master with expertise in Scrum framework and agile project management</p>
+                            </div>
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-green-900 mb-2">Microservices Architecture Certification</h3>
+                                <p class="text-sm text-gray-700">UDEMY - Advanced certification in microservices design and implementation</p>
+                            </div>
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <h3 class="font-semibold text-green-900 mb-2">ISO 9001: Quality Management System</h3>
+                                <p class="text-sm text-gray-700">Certification in Quality Management Systems and quality assurance processes</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- AI & Machine Learning Training -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-600">AI & Machine Learning Training</h2>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-900">The Complete Agentic Engineering Course</h3>
+                                    <span class="text-sm text-gray-500 bg-green-100 px-3 py-1 rounded-full">Current</span>
+                                </div>
+                                <p class="text-gray-700">Comprehensive training in agentic AI systems, LLM orchestration, CrewAI, LangGraph, AutoGen, MCP, RAG pipelines, and vector databases.</p>
+                            </div>
+                            <div class="border-l-4 border-green-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-900">Neural Networks and Deep Learning</h3>
+                                    <span class="text-sm text-gray-500">Coursera</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mb-2">2024 - Ongoing</p>
+                                <p class="text-gray-700">Advanced course covering neural networks, deep learning architectures, and practical applications.</p>
+                            </div>
+                            <div class="border-l-4 border-green-600 pl-4">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-900">Generative AI: Introduction and Applications</h3>
+                                    <span class="text-sm text-gray-500">IBM</span>
+                                </div>
+                                <p class="text-sm text-gray-500 mb-2">2023</p>
+                                <p class="text-gray-700">Comprehensive introduction to generative AI technologies, applications, and best practices.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Technical Training & Skills Development -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-600">Technical Training & Skills Development</h2>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Next-Gen Development Workflows</h3>
+                                    <p class="text-sm text-gray-600">Modern development practices, CI/CD, Docker, and cloud-native architectures</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Python Toolchains (uv)</h3>
+                                    <p class="text-sm text-gray-600">Advanced Python development with uv package management and modern tooling</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Workflow Automation (n8n)</h3>
+                                    <p class="text-sm text-gray-600">Building automated workflows and integrations using n8n platform</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Cursor AI Rules & Best Practices</h3>
+                                    <p class="text-sm text-gray-600">Optimizing AI-assisted development workflows and coding practices</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Vector Databases & RAG Systems</h3>
+                                    <p class="text-sm text-gray-600">Pinecone, Qdrant, Chroma, pgvector - Building retrieval-augmented generation pipelines</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">LLM Agent Frameworks</h3>
+                                    <p class="text-sm text-gray-600">CrewAI, LangGraph, AutoGen, OpenAI Agents SDK - Building intelligent agent systems</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Additional Qualifications -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-600">Additional Qualifications</h2>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">GAMP (Good Automated Manufacturing Practice)</h3>
+                                    <p class="text-sm text-gray-600">Training and certification in pharmaceutical manufacturing automation standards</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">Lean Sigma Methodologies</h3>
+                                    <p class="text-sm text-gray-600">Process improvement and quality optimization methodologies</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">•</span>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">ISO 9000 Training</h3>
+                                    <p class="text-sm text-gray-600">Quality management systems training and implementation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div id="section-contact" class="section-content">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    <!-- Contact Header -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-red-600">Contact Information</h2>
+                        <p class="text-base leading-relaxed text-gray-700 mb-6">
+                            Available for opportunities in the UK and Jamaica. Please feel free to reach out via email or phone.
+                        </p>
+                    </section>
+
+                    <!-- UK Contact -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h2 class="text-2xl font-bold text-gray-900">United Kingdom</h2>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-red-50 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1">Address</h3>
+                                    <p class="text-gray-700">70 Attlee Close</p>
+                                    <p class="text-gray-700">Thornton Heath</p>
+                                    <p class="text-gray-700">CR7 7FA</p>
+                                    <p class="text-gray-700">United Kingdom</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-red-50 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
+                                    <a href="tel:+4474481547681" class="text-red-600 hover:text-red-700 hover:underline text-lg font-medium">
+                                        +44 7448 1547681
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Jamaican Contact -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h2 class="text-2xl font-bold text-gray-900">Jamaica</h2>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-red-50 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1">Address</h3>
+                                    <p class="text-gray-700">212 Caib</p>
+                                    <p class="text-gray-700">Ocho Rios</p>
+                                    <p class="text-gray-700">St. Ann</p>
+                                    <p class="text-gray-700">Jamaica</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-10 h-10 bg-red-50 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
+                                    <a href="tel:+18767071967" class="text-red-600 hover:text-red-700 hover:underline text-lg font-medium">
+                                        +1 (876) 707-1967
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Email Contact -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-red-50 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
+                                <a href="mailto:julianshaw2000@gmail.com" class="text-red-600 hover:text-red-700 hover:underline text-lg font-medium">
+                                    julianshaw2000@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-6 mt-8">
+        <div class="max-w-4xl mx-auto px-4 text-center text-sm text-gray-600">
+            <p>© 2024 Julian Shaw. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
