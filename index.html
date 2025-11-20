@@ -54,14 +54,16 @@
         #nav-control:checked ~ header ~ .main-container #section-control,
         #nav-ai:checked ~ header ~ .main-container #section-ai,
         #nav-education:checked ~ header ~ .main-container #section-education,
-        #nav-contact:checked ~ header ~ .main-container #section-contact {
+        #nav-contact:checked ~ header ~ .main-container #section-contact,
+        #nav-message:checked ~ header ~ .main-container #section-message {
             display: block;
         }
         #nav-software:checked ~ header ~ .main-container .sidebar label[for="nav-software"],
         #nav-control:checked ~ header ~ .main-container .sidebar label[for="nav-control"],
         #nav-ai:checked ~ header ~ .main-container .sidebar label[for="nav-ai"],
         #nav-education:checked ~ header ~ .main-container .sidebar label[for="nav-education"],
-        #nav-contact:checked ~ header ~ .main-container .sidebar label[for="nav-contact"] {
+        #nav-contact:checked ~ header ~ .main-container .sidebar label[for="nav-contact"],
+        #nav-message:checked ~ header ~ .main-container .sidebar label[for="nav-message"] {
             background-color: rgb(99 102 241);
             color: white;
         }
@@ -76,6 +78,9 @@
         }
         #nav-contact:checked ~ header ~ .main-container .sidebar label[for="nav-contact"] {
             background-color: rgb(239 68 68);
+        }
+        #nav-message:checked ~ header ~ .main-container .sidebar label[for="nav-message"] {
+            background-color: rgb(236 72 153);
         }
         /* Desktop: Fixed sidebar */
         @media (min-width: 769px) {
@@ -193,6 +198,7 @@
     <input type="radio" name="main-nav" id="nav-ai" class="hidden">
     <input type="radio" name="main-nav" id="nav-education" class="hidden">
     <input type="radio" name="main-nav" id="nav-contact" class="hidden">
+    <input type="radio" name="main-nav" id="nav-message" class="hidden">
     <input type="checkbox" id="mobile-toggle" class="hidden">
 
     <!-- Mobile Overlay -->
@@ -252,6 +258,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
                     <span>Contact</span>
+                </label>
+                <label for="nav-message" class="flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-colors hover:bg-gray-100 font-medium text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <span>Send Message</span>
                 </label>
             </div>
 
@@ -1137,6 +1149,114 @@
                     </section>
                 </div>
             </div>
+
+            <!-- Send Message Section -->
+            <div id="section-message" class="section-content">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    <!-- Header -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-900 mb-2">Send a Message</h2>
+                                <p class="text-gray-600 text-sm">
+                                    Have a question or want to discuss an opportunity? Fill out the form below and I'll get back to you as soon as possible.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contact Form -->
+                    <section class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <form
+                            action="https://formspree.io/f/mjklrzjk"
+                            method="POST"
+                            class="space-y-6"
+                            id="contact-form"
+                        >
+                        <input type="hidden" name="subject" value="Resume Enquiry" />
+
+                            <!-- Email Field -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Your Email <span class="text-pink-600">*</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    required
+                                    autocomplete="email"
+                                    placeholder="your.email@example.com"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors outline-none text-gray-900 placeholder-gray-400"
+                                />
+                                <p class="mt-1 text-xs text-gray-500">We'll never share your email with anyone else.</p>
+                            </div>
+
+                            <!-- Message Field -->
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Your Message <span class="text-pink-600">*</span>
+                                </label>
+                                <textarea
+                                    name="message"
+                                    id="message"
+                                    required
+                                    rows="6"
+                                    placeholder="Tell me about your project or opportunity..."
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-colors outline-none resize-y text-gray-900 placeholder-gray-400"
+                                ></textarea>
+                                <p class="mt-1 text-xs text-gray-500">Minimum 10 characters required.</p>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="flex items-center gap-4">
+                                <button
+                                    type="submit"
+                                    class="px-6 py-3 bg-pink-600 text-white font-medium rounded-lg hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                                    id="submit-btn"
+                                >
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="send-icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                    </svg>
+                                    <span id="submit-text">Send Message</span>
+                                    <svg class="hidden w-5 h-5 animate-spin" id="loading-icon" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </button>
+                                <p class="text-sm text-gray-500">
+                                    <span class="text-pink-600">*</span> Required fields
+                                </p>
+                            </div>
+
+                            <!-- Success Message (hidden by default) -->
+                            <div id="success-message" class="hidden p-4 bg-green-50 border border-green-200 rounded-lg">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <p class="text-green-800 font-medium">Message sent successfully! I'll get back to you soon.</p>
+                                </div>
+                            </div>
+
+                            <!-- Error Message (hidden by default) -->
+                            <div id="error-message" class="hidden p-4 bg-red-50 border border-red-200 rounded-lg">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <p class="text-red-800 font-medium">There was an error sending your message. Please try again.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -1146,5 +1266,91 @@
             <p>© 2024 Julian Shaw. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Form Submission Handler -->
+    <script>
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const sendIcon = document.getElementById('send-icon');
+        const loadingIcon = document.getElementById('loading-icon');
+        const successMessage = document.getElementById('success-message');
+        const errorMessage = document.getElementById('error-message');
+
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Hide previous messages
+                successMessage.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+
+                // Show loading state
+                submitBtn.disabled = true;
+                submitText.textContent = 'Sending...';
+                sendIcon.classList.add('hidden');
+                loadingIcon.classList.remove('hidden');
+
+                try {
+                    const formData = new FormData(form);
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Success
+                        successMessage.classList.remove('hidden');
+                        form.reset();
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    } else {
+                        // Error
+                        errorMessage.classList.remove('hidden');
+                        errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                } catch (error) {
+                    // Network error
+                    errorMessage.classList.remove('hidden');
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } finally {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitText.textContent = 'Send Message';
+                    sendIcon.classList.remove('hidden');
+                    loadingIcon.classList.add('hidden');
+                }
+            });
+
+            // Real-time validation feedback
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+
+            if (emailInput) {
+                emailInput.addEventListener('blur', function() {
+                    if (this.value && !this.validity.valid) {
+                        this.classList.add('border-red-500');
+                        this.classList.remove('border-gray-300');
+                    } else {
+                        this.classList.remove('border-red-500');
+                        this.classList.add('border-gray-300');
+                    }
+                });
+            }
+
+            if (messageInput) {
+                messageInput.addEventListener('input', function() {
+                    if (this.value.length < 10 && this.value.length > 0) {
+                        this.classList.add('border-yellow-500');
+                    } else {
+                        this.classList.remove('border-yellow-500');
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
