@@ -1385,6 +1385,28 @@
                 });
             });
         }
+
+        // Close mobile menu when menu item is clicked (mobile view only)
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const menuLabels = document.querySelectorAll('.sidebar label[for^="nav-"]');
+
+        function isMobileView() {
+            return window.innerWidth <= 768;
+        }
+
+        if (mobileToggle && menuLabels.length > 0) {
+            menuLabels.forEach(label => {
+                label.addEventListener('click', () => {
+                    // Only close menu in mobile view
+                    if (isMobileView() && mobileToggle.checked) {
+                        // Use setTimeout to allow the radio button to be checked first
+                        setTimeout(() => {
+                            mobileToggle.checked = false;
+                        }, 0);
+                    }
+                });
+            });
+        }
     </script>
 </body>
 </html>
