@@ -428,7 +428,7 @@ a:hover { color: var(--primary-hover); }
     
     h1 { font-size: 2rem; }
     h2 { font-size: 1.5rem; }
-    .profile-img { object-position: center 10%; }
+    .profile-img { object-position: center 0%; }
 }
 
 /* Utilities */
