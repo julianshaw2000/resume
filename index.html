@@ -79,7 +79,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Hanken+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
@@ -105,7 +105,8 @@
             <div class="profile-section">
                 <img src="./me.png" alt="Julian Shaw" class="profile-img">
                 <h1 class="profile-name">Julian Shaw</h1>
-                <p class="profile-role">Full Stack Developer<br>Control Systems Eng.</p>
+                <p class="profile-role">Full-Stack · AI / Agentic<br>Control Systems Eng.</p>
+                <span class="status-chip"><span class="dot"></span>Available for work</span>
             </div>
 
             <ul class="nav-links">
@@ -155,38 +156,48 @@
         <!-- Main Content -->
         <main class="main-content">
 
-            <!-- ABOU / HERO SECTION -->
+            <!-- ABOUT / HERO SECTION -->
             <section id="about" class="section">
-                <div class="bg-surface">
-                    <h2 class="text-primary">Hello, I'm Julian</h2>
-                    <p style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 2rem;">
-                        Innovative <strong>Full Stack Developer</strong> and <strong>Control Systems Engineer</strong> with 20+ years of professional experience.
-                    </p>
-                    <p>
-                        Senior full-stack engineer with 20+ years of professional experience specializing in Angular 21 SaaS platforms, AI-integrated systems, and secure multi-tenant architectures. Currently <strong>CTO / Lead Engineer of Auditraks</strong>, a B2B regulatory-compliance SaaS for 3TG mineral supply chains (.NET 9/10 + Angular 21), where I also build Model Context Protocol (MCP) servers that expose business platforms to AI assistants.
-                    </p>
-                    <p>
-                        Early adopter and power user of AI-assisted development (Claude &amp; Cursor IDE), leveraging LLMs for architectural reasoning, rapid refactoring, and automated test generation to deliver production-grade software faster.
-                    </p>
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="#contact" class="btn-download">Get in Touch</a>
-                        <a href="#software" style="padding: 0.75rem 1.5rem; border: 1px solid var(--border-color); border-radius: 0.5rem; color: var(--text-main);">View Portfolio</a>
-                    </div>
+                <span class="hero-kicker">Full-Stack · AI &amp; Agentic · Control Systems</span>
+                <h1 class="hero-title">Engineer of <em>production systems</em> —<br>and the AI agents that run them.</h1>
+                <p class="hero-lead">
+                    Senior full-stack engineer with <strong>20+ years</strong> building Angular&nbsp;21 / .NET SaaS platforms, secure multi-tenant architectures, and — most recently — Claude-powered agentic AI.
+                </p>
+                <p class="hero-sub">
+                    An early adopter of AI-assisted development (Claude &amp; Cursor IDE), using LLMs for architectural reasoning, automated refactoring, and agentic workflow orchestration to ship production-grade software faster.
+                </p>
+
+                <div class="now-card">
+                    <span class="now-label">◆ Currently</span>
+                    <span class="now-title">CTO / Lead Engineer — Auditraks</span>
+                    <p class="now-desc">B2B regulatory-compliance SaaS for 3TG mineral supply chains, where I build Model Context Protocol (MCP) servers that expose business platforms to AI assistants.</p>
+                </div>
+
+                <div class="stat-strip">
+                    <div class="stat"><div class="num">20<span>+</span></div><div class="lbl">Years shipping</div></div>
+                    <div class="stat"><div class="num">55</div><div class="lbl">AI tools (MCP)</div></div>
+                    <div class="stat"><div class="num">3</div><div class="lbl">Engineering domains</div></div>
+                    <div class="stat"><div class="num">.NET<span> 9/10</span></div><div class="lbl">+ Angular 21</div></div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-download">Get in Touch</a>
+                    <a href="#software" class="btn-ghost">View Portfolio</a>
                 </div>
             </section>
 
             <!-- SOFTWARE DEVELOPMENT -->
             <section id="software" class="section section-software">
-                <div class="section-header">
+                <div class="section-header" data-num="01">
                     <h2>Software Development</h2>
                 </div>
 
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
                     <a href="./files/Resume_2026.pdf" download="Julian_Shaw_Resume.pdf" class="btn-download">
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         Download CV (PDF)
                     </a>
-                    <a href="./files/Julian_Shaw_Resume.docx" download="Julian_Shaw_Resume.docx" class="btn-download">
+                    <a href="./files/Julian_Shaw_Resume.docx" download="Julian_Shaw_Resume.docx" class="btn-download teal">
                         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         Download CV (DOCX)
                     </a>
@@ -327,11 +338,11 @@
 
             <!-- CONTROL SYSTEMS -->
             <section id="control" class="section section-control">
-                <div class="section-header">
+                <div class="section-header" data-num="02">
                     <h2 class="text-secondary">Control Systems Engineering</h2>
                 </div>
 
-                <a href="./files/Resume_2026.pdf" download="Julian_Shaw_Resume.pdf" class="btn-download teal">
+                <a href="./files/Resume_2026.pdf" download="Julian_Shaw_Resume.pdf" class="btn-download teal" style="margin-bottom: 2.5rem;">
                     <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                     Download CV (PDF)
                 </a>
@@ -390,7 +401,7 @@
 
             <!-- AI / ML -->
             <section id="ai" class="section section-ai">
-                <div class="section-header">
+                <div class="section-header" data-num="03">
                     <h2 class="text-tertiary">AI & Machine Learning</h2>
                 </div>
 
@@ -447,7 +458,7 @@
 
             <!-- EDUCATION -->
             <section id="education" class="section">
-                <div class="section-header">
+                <div class="section-header" data-num="04">
                     <h2>Education & Certifications</h2>
                 </div>
 
@@ -477,7 +488,7 @@
 
             <!-- CONTACT -->
             <section id="contact" class="section">
-                <div class="section-header">
+                <div class="section-header" data-num="05">
                     <h2>Contact Me</h2>
                 </div>
 
