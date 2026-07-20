@@ -368,6 +368,16 @@ a:hover { color: var(--primary-hover); }
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.4rem;
+    align-items: start;
+}
+
+/* main.js adds .section to every .card for scroll-reveal — neutralise the
+   section bottom margin so grid rows are spaced by `gap`, not 6rem. */
+.card.section { margin-bottom: 0; }
+
+/* Balanced two-up grid (used where a set of 4 cards would otherwise orphan one) */
+@media (min-width: 1100px) {
+    .card-grid.grid-pair { grid-template-columns: repeat(2, 1fr); }
 }
 
 .card {
