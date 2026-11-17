@@ -52,25 +52,33 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', highlightNavigation);
 
     // --- Entrance Animations ---
+    // Threshold 0 so tall sections (e.g. Work on mobile) reveal as soon as
+    // any part enters the viewport. A fractional threshold can never be met
+    // by a section taller than the viewport, leaving it stuck at opacity 0.
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0,
+        rootMargin: '0px 0px -40px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: Stop observing once visible to run only once
-                // observer.unobserve(entry.target); 
-            }
-        });
-    }, observerOptions);
+    const revealTargets = document.querySelectorAll('.section, .card');
 
-    document.querySelectorAll('.section, .card').forEach(el => {
-        el.classList.add('section'); // Ensure class exists for generic usage
-        observer.observe(el);
-    });
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealTargets.forEach(el => {
+            el.classList.add('section'); // Ensure class exists for generic usage
+            observer.observe(el);
+        });
+    } else {
+        revealTargets.forEach(el => el.classList.add('section', 'visible'));
+    }
 
     // --- Contact Form ---
     const form = document.getElementById('contact-form');
