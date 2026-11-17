@@ -270,10 +270,11 @@ a:hover { color: var(--primary-hover); }
 .section {
     margin-bottom: 6rem;
     scroll-margin-top: 2rem;
-    opacity: 0;
-    transform: translateY(24px);
     transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
+/* Only hide content once the reveal script is running, so a blocked or stale
+   script (or JS disabled) still shows the page. */
+html.js .section:not(.visible) { opacity: 0; transform: translateY(24px); }
 .section.visible { opacity: 1; transform: translateY(0); }
 
 /* Numbered section headers */
@@ -634,5 +635,5 @@ a.btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
-    .section { opacity: 1; transform: none; }
+    .section { opacity: 1 !important; transform: none !important; }
 }

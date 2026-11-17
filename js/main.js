@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealTargets = document.querySelectorAll('.section, .card');
 
     if ('IntersectionObserver' in window) {
+        window.__revealObserverReady = true;
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
